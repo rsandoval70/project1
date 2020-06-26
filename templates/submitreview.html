@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Make <!-- REVIEW:  -->
+{% endblock %}
+
+{% block body %}
+-{{ session["notes"] }}-
+    <h1>Check and Submit Review</h1>
+
+    <h2> {{ book.title}} <h2>
+
+
+      <div>
+        <br>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+                <th scope="col">ISBN</th>
+                <th scope="col">Author</th>
+                <th scope="col">Publication Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>{{ book.isbn }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.year }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <br>
+
+        <h2> GoodReads Info </h2>
+        {% if res is none: %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th scope="col">No Goodreads Review</th>
+              </tr>
+            </thead>
+          </table>
+        {% else: %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th scope="col">Numero de Ratings</th>
+                  <th scope="col">Average Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>{{ res['ratings_count'] }}</td>
+                  <td>{{ res['average_rating'] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        {% endif %}
+      </div>
+
+      <form action="{{ url_for('submit') }}" method="post">
+        <input type="hidden" class="form-control" name="id_user" value=1>
+        <input type="hidden"   class="form-control" name="id_book" value={{ book.id }} >
+        <div class="form-group">
+          <input class="form-control" name="comment" placeholder="Insert your coment Review">
+        </div>
+        <select class="form-control" name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+            </select>
+        <div class="form-group">
+          <button class="btn btn-primary"> Submit Review </button>
+        </div>
+      </form>
+
+
+
+          <div>
+            <table class="table table-striped">
+              <tbody>
+                {% for review in reviews %}
+                    <tr>
+                        <th scope="row">{{loop.counter}}</th>
+                        <td>{{review.id_user}}</td>
+                        <td>{{review.review}}</td>
+                        <td>{{review.rate}}</td>
+                        <td>{{review.created_date.strftime('%h-%Y')}}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <th scope="row">No Reviews</th>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+
+
+{% endblock %}

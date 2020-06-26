@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book Review
+{% endblock %}
+
+{% block body %}
+-{{ session['notes'] }}-
+    <h1>Book Review</h1>
+
+    <form action="{{ url_for('review') }}" method="post">
+      <div class="form-group">
+            <select class="form-control" name="bookId">
+                {% for book in books %}
+                    <option value="{{ book.id }}">ISBN: {{ book.isbn }} - Tittle:  {{ book.title }} -Author: {{ book.author }} - Year: {{ book.year }}</option>
+                {% endfor %}
+            </select>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary"> Book details </button>
+      </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,47 @@
+div {
+  font-size: 18px; }
+
+div p {
+  color: #01AD99; }
+div ul {
+  color: green; }
+
+table {
+  border: 2px solid black;
+  border-collapse: collapse;
+  width: 50%; }
+
+th, td {
+  border: 1px solid black;
+  padding: 5px;
+  text-align: center; }
+
+th {
+  background-color: lightgray; }
+
+h2 {
+  text-align: center; }
+
+.row > div {
+  padding: 20px;
+  background-color: #01AD99;
+  border: 1px solid white; }
+
+.encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #01AD99;
+  font-family: fantasy;
+  padding: 5px;
+  width: 90%;
+  height: auto; }
+
+#derecho {
+  text-align: right;
+  color: #01AD99; }
+
+#h2centro {
+  text-align: center;
+  color: #01AD99; }
+
+/*# sourceMappingURL=miEstilo.css.map */

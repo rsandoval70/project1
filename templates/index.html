@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Books Review Login
+{% endblock %}
+
+{% block body%}
+-{{ session['notes'] }}-
+  {% if not session["mySession"]: %}
+      <h1>Login</h1>
+        <form action="{{ url_for('validate') }}" method="post">
+            <div class="form-group">
+              <input class="form-control" name="login" placeholder="User Name">
+            </div>
+
+            <div class="form-group">
+              <input class="form-control" type="password" name="upassword" placeholde placeholder="Password">
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-primary"> Login </button>
+            </div>
+        </form>
+    {% else: %}
+      <h1>Hola {{ mySession[1] }}</h1>
+    {% endif%}
+{% endblock%}
